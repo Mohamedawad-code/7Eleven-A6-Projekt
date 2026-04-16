@@ -1,0 +1,12 @@
+@startuml
+
+package "Domain Layer" {
+    class Employee
+    class FrontingDocument
+    class Product
+    class WriteOffDocument
+    class WriteOffLine
+    class FrontingLine
+}
+
+@enduml

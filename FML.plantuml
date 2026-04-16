@@ -1,0 +1,58 @@
+@startuml
+
+class "Nøglepartnere"{
+Retain Convenience Denmark [franchise]
+Shell [lokationer]
+Reitan distribution [logistik]
+Produktmærker [f.eks. Coca-Cola, Red Bull, etc.]
+}
+class "Nøgleaktiviteter"{
+Drift af butik
+Produktion og håndtering af mad og drikkevarer
+Markedsføring og kampagner
+bestilling og vareopfyldning 
+Indkøb og logistik
+}
+class "Nøgleressourcer"{
+Butikslokationer i højt trafikerede områder
+Stærkt brand
+}
+class "Værditilbud"{
+ Mulighed for et hurtigt køb af convenience produkter [impuls køb]
+hvor kunderne ofte har brug for hurtige og nemme løsninger
+Tilbyder butikker der er åbent 24/7
+Placeringer tæt på veje og transportknudepunkter
+Hurtig service og minimal ventetid
+}
+class "Kunderelationer"{  
+Hurtig, personligt betjening
+Loyalitetsprogrammer og kampagner via 7/11 App
+}
+class "Kanaler"{
+Fysiske butikker [primær kanal]
+ 7/11 App [loyalitet, tilbud, kampagner]
+ Sociale medier, kampagner og traditionelle reklamer
+ Samarbejde med leveringsapps [f.eks. Just Eat, Wolt]
+}
+class "Kundesegmenter"{
+Pendlere og studerende 
+Rejsende/turister [impuls køb]
+Lokaler beboer
+}
+class "Indtægtsstrømme"{
+Salg af convenience, mad, drikkevarer og diverse produkter
+Salg af basale dagligvarer
+Salg af tobak, spil, lotteri og pakkeservice
+DSB APP samarbejde [salg på tog og stationer]
+Salg via 7/11 App [loyalitet, tilbud, kampagner]
+}
+class "Omkostningsstruktur"{
+faste omkostninger [leje, lønninger, osv.]
+variable omkostninger [varer, markedsføring, osv.]
+}
+
+hide methods
+hide circle
+show attributes
+
+@enduml

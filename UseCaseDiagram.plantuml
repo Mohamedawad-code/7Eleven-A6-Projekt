@@ -1,0 +1,15 @@
+@startuml
+
+left to right direction
+actor Medarbejder as g
+
+package Varehåndteringssystem {
+  usecase "Registrer Vare" as UC1
+  usecase "Afskriv Vare" as UC2
+  usecase "Rediger Vare" as UC3
+}
+
+g --> UC1
+g --> UC2
+g --> UC3
+@enduml

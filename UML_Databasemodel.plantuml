@@ -1,0 +1,74 @@
+@startuml
+
+class Employee <<table>>{
+    ** <<PK>> <<surrogate>> EmployeeID : Int**
+    Name : NVarChar_666
+    
+    <<PK>> PK_Employee()
+
+}
+
+class FrontingDocument <<table>>{
+    ** <<PK>> <<surrogate>> FrontingDocumentID : Int**
+    Date : DateTime
+    //<<FK>> EmployeeID : Int//
+
+    <<PK>> PK_FrontingDocument()
+    <<FK>> FK_FrontingDocument_Employee(EmployeeID)
+}
+class Product <<table>> {
+    ** <<PK>> <<surrogate>> ProductID : Int**
+    Name : NVarChar_666
+    Quantity : Int
+    ExpirationDate : DateTime
+    ReceivedDate : DateTime
+
+    <<PK>> PK_Product()
+
+}
+class WriteOffDocument <<table>> {
+    ** <<PK>> <<surrogate>> WriteOffDocumentID : Int**
+    Date : DateTime
+    //<<FK>> EmployeeID : Int//
+    
+    <<PK>> PK_WriteOffDocument()
+    <<FK>> FK_WriteOffDocument_Employee(EmployeeID)
+
+}
+
+class WriteOffLine <<table>> {
+    ** <<PK>> <<surrogate>> WriteOffLineID : Int**
+    Quantity : int
+    Reason : NVarChar_15
+    //<<FK>> WriteOffDocumentID : Int//
+    //<<FK>> ProductID : Int//
+
+    <<PK>> PK_WriteOffLine()
+    <<FK>> FK_WriteOffLine_WriteOffDocument(WriteOffDocumentID)
+    <<FK>> FK_WriteOffLine_Product(ProductID)
+}
+
+class FrontingLine <<table>> {
+    ** <<PK>> <<surrogate>> FrontingLineID : Int**
+    Quantity : int
+    Date : DateTime
+    //<<FK>> FrontingDocumentID : Int//
+    //<<FK>> ProductID : Int//
+
+    <<PK>> PK_FrontingLine()
+    <<FK>> FK_FrontingLine_FrontingDocument(FrontingDocumentID)
+    <<FK>> FK_FrontingLine_Product(ProductID)
+}
+
+Employee "1" -- "0..*" FrontingDocument
+Employee "1" -- "0..*" WriteOffDocument
+FrontingDocument "1" -- "0..*" FrontingLine
+WriteOffDocument "1" -- "0..*" WriteOffLine
+Product "1" -- "0..*" FrontingLine
+Product "1" -- "0..*" WriteOffLine
+
+
+
+
+
+@enduml

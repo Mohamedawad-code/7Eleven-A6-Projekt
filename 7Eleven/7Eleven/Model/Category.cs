@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace _7Eleven.Model
 {
-    public class Catagory
+    public class Category
     {
         public string FoodName { get; set; }
         public FoodCategory FoodType { get; set; }
 
-        public Catagory (string foodname, FoodCategory foodtype)
+        public Category (string foodname, FoodCategory foodtype)
         {
             FoodName = foodname;
             FoodType = foodtype;

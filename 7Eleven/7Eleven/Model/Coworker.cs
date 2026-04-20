@@ -8,6 +8,17 @@ namespace _7Eleven.Model
 {
     public class Coworker
     {
-        string Name { get; set; }
+       public string Name { get; set; }
+       public int Id { get; set;  }
+
+        public Coworker(string name, int id)
+        {
+            if (id < 1000 || id > 9999)
+                throw new ArgumentException("Id must be 4 digits");
+
+            Name = name;
+            Id = id;
+
+        }
     }
 }

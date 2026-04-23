@@ -10,29 +10,29 @@ namespace _7Eleven.ViewModel
 {
     public class CoworkerViewModel
     {
-        private List<Coworker> _Coworkers = new List<Coworker>();
+        private List<Coworker> _coworkers = new List<Coworker>();
 
         public Coworker CreateCoWorker( string Newname, int Newid)
         {
             var newcoworker = new Coworker(Newname, Newid);
 
-            _Coworkers.Add(newcoworker);
+            _coworkers.Add(newcoworker);
             return newcoworker;
         }
 
         public void DeleteWorker(int id)
         {
-            var coworker = _Coworkers.FirstOrDefault(e => e.Id == id);
+            var coworker = _coworkers.FirstOrDefault(e => e.Id == id);
             if (coworker is null)
                 throw new ArgumentException("Invalid");
 
-            _Coworkers.Remove(coworker);
+            _coworkers.Remove(coworker);
         }
 
 
         public Coworker EditCoWorker(string updatedName, int UpdatedId, int id)
         {
-            var updatedcoworker = _Coworkers.FirstOrDefault(e => e.Id == id);
+            var updatedcoworker = _coworkers.FirstOrDefault(e => e.Id == id);
             if (updatedcoworker is null)
                 throw new ArgumentException("Invalid");
 
@@ -40,6 +40,11 @@ namespace _7Eleven.ViewModel
             updatedcoworker.Id = UpdatedId;
 
             return updatedcoworker;
+        }
+
+        public List<Coworker> GetAllCoworkers()
+        {
+            return _coworkers;
         }
     }
 }

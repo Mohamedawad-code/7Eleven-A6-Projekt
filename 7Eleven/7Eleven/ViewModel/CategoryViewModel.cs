@@ -43,5 +43,9 @@ namespace _7Eleven.ViewModel
 
         }
 
+        public List<Category> GetAllCategories()
+        {
+            return _categories;
+        }
     }
 }

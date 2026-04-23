@@ -37,7 +37,10 @@ namespace _7Eleven.ViewModel
         }
 
       
-
+        public List<RegisterPaper> GetAllregisterPapers()
+        {
+            return _registerpaper;
+        }
 
 
     }

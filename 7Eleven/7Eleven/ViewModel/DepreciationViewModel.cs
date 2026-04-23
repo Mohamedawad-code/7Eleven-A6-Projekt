@@ -9,7 +9,7 @@ namespace _7Eleven.ViewModel
 {
     public class DepreciationViewModel
     {
-        public List<Depreciation> _depreciation = new List<Depreciation>();
+        private List<Depreciation> _depreciation = new List<Depreciation>();
 
         public Depreciation CreateDepreciation(DateTime newDate, Product newProductdep)
         {
@@ -38,5 +38,9 @@ namespace _7Eleven.ViewModel
             return updatedDepreciation;
         }
 
+        public List<Depreciation> GetAll()
+        {
+            return _depreciation;
+        }
     }
 }

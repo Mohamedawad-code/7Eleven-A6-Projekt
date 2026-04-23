@@ -42,5 +42,10 @@ namespace _7Eleven.ViewModel
 
             return updatedProduct;
         }
+
+        public List<Product> GetAllProducts()
+        {
+            return _products;
+        }
     }
 }

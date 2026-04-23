@@ -23,6 +23,8 @@ namespace _7Eleven.ViewModel
             , newProducts
             , newDate);
 
+            _registerpaper.Add(newRegisterPaper);
+
             return newRegisterPaper;
 
         }

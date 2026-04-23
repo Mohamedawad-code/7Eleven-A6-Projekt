@@ -31,7 +31,10 @@ namespace _7Eleven.ViewModel
         public Depreciation EditDepreciation(DateTime updatedDate, Product updatedProductdep, Guid id)
         {
             var updatedDepreciation = _depreciation.FirstOrDefault(d => d.ID == id);
+            if (updatedDepreciation is null)
+                throw new ArgumentException("Invalid");
 
+        
             updatedDepreciation.ProductDep = updatedProductdep;
             updatedDepreciation.Date = updatedDate;
 

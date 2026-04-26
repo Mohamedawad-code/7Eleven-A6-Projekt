@@ -21,18 +21,18 @@ namespace _7Eleven.ViewModel
             return NewCategory;
         }
 
-        public void DeleteCategory(string foodname)
+        public void DeleteCategory(Guid id)
         {
-            var category = _categories.FirstOrDefault(c => c.FoodName == foodname);
+            var category = _categories.FirstOrDefault(c => c.ID == id);
             if (category is null)
                 throw new ArgumentException("Category doesnt exist");
 
             _categories.Remove(category);
         }
 
-        public Category EditCategory(string Updatedfoodname, FoodCategory Updatedfoodtype, string foodname)
+        public Category EditCategory(string Updatedfoodname, FoodCategory Updatedfoodtype, Guid id)
         {
-            var UpdatedCategory = _categories.FirstOrDefault(u => u.FoodName == foodname);
+            var UpdatedCategory = _categories.FirstOrDefault(u => u.ID == id);
             if (UpdatedCategory is null)
                 throw new ArgumentException("Category doesnt exist");
 
@@ -46,6 +46,12 @@ namespace _7Eleven.ViewModel
         public List<Category> GetAllCategories()
         {
             return _categories;
+        }
+
+        public Category GetByidCategory(Guid id)
+        {
+            var category = _categories.FirstOrDefault(c => c.ID == id);
+            return category;
         }
     }
 }

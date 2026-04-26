@@ -45,5 +45,14 @@ namespace _7Eleven.ViewModel
         {
             return _depreciation;
         }
+
+        public Depreciation GetByIdDepreciation(Guid id)
+        {
+            var depreciation = _depreciation.FirstOrDefault(d => d.ID == id);
+            if (depreciation is null)
+                throw new ArgumentException("Doesnt exist");
+
+            return depreciation;
+        }
     }
 }

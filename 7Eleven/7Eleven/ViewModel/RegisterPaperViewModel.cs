@@ -44,6 +44,15 @@ namespace _7Eleven.ViewModel
             return _registerpaper;
         }
 
+        public RegisterPaper GetByIdRegisterpaper(Guid id)
+        {
+            var registerpaper = _registerpaper.FirstOrDefault(r => r.ID == id);
+            if (registerpaper is null)
+                throw new ArgumentException("Invalid");
+
+            return registerpaper;
+        }
+
 
     }
 }

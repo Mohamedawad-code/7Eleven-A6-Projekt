@@ -46,5 +46,14 @@ namespace _7Eleven.ViewModel
         {
             return _coworkers;
         }
+
+        public Coworker GetByIdCoworker(int id)
+        {
+            var coworker = _coworkers.FirstOrDefault(c => c.Id == id);
+            if (coworker is null)
+                throw new ArgumentException("Invalid or doesnt exist");
+
+            return coworker;
+        }
     }
 }

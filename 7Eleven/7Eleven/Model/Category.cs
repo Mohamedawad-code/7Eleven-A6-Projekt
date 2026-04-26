@@ -10,6 +10,7 @@ namespace _7Eleven.Model
     {
         public string FoodName { get; set; }
         public FoodCategory FoodType { get; set; }
+        public Guid ID { get; set; } = Guid.NewGuid();
 
         public Category (string foodname, FoodCategory foodtype)
         {

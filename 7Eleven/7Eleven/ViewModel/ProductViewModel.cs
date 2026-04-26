@@ -47,5 +47,14 @@ namespace _7Eleven.ViewModel
         {
             return _products;
         }
+
+        public Product GetByIdProduct(Guid productno)
+        {
+            var product = _products.FirstOrDefault(p => p.ProductNO == productno);
+            if (product is null)
+                throw new ArgumentException("Invalid");
+
+            return product;
+        }
     }
 }

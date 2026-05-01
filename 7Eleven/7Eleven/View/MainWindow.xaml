@@ -6,7 +6,30 @@
         xmlns:local="clr-namespace:_7Eleven"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    
+    
 
-    </Grid>
+    <DockPanel>
+
+
+
+        <Grid>
+            <Rectangle HorizontalAlignment="Left" Height="1" Margin="0,22,0,0" Stroke="Black" VerticalAlignment="Top" Width="800"/>
+            <Button Content="Overview" Click="OverviewViewPage_Click"  FontSize="25" FontFamily="Times New Roman" HorizontalAlignment="Center" Margin="0,150,0,0" VerticalAlignment="Top" Height="58" Width="266" Background="white" BorderThickness="2"/>
+            <Label Content="Menu" FontSize="30" FontFamily="Times New Roman" HorizontalAlignment="Center" Margin="0,44,0,0" VerticalAlignment="Top" Height="55" Width="96"/>
+            <Button Content="Register product" Click="RegisterProductView_Click" FontSize="25" FontFamily="Times New Roman" HorizontalAlignment="Center" Margin="0,225,0,0" VerticalAlignment="Top" Height="58" Width="266" Background="white" BorderThickness="2"/>
+            <Button Content="Depreciation of product" Click="DeprecationView_Click" FontSize="25" FontFamily="Times New Roman" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" Height="58" Width="266" Background=" white" BorderThickness="2"/>
+
+            <TextBlock 
+                HorizontalAlignment="Left" Margin="350,4,0,0" TextWrapping="Wrap" FontWeight="Bold" VerticalAlignment="Top">
+            <Run Text="SEV" Foreground="Red"/><Run Text="EN" Foreground="Orange" />
+                <Run Text="-" Foreground="Orange" />
+                <Run Text="ELEVEN" Foreground="Green"  />
+
+            </TextBlock>
+
+            <ContentControl x:Name="MainContent" Margin="0,23,0,2"/>
+
+        </Grid>
+    </DockPanel>
 </Window>

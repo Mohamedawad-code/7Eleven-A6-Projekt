@@ -20,5 +20,24 @@ namespace _7Eleven
         {
             InitializeComponent();
         }
+
+
+        private void OverviewViewPage_Click(object sender, RoutedEventArgs e)
+        {
+          
+            MainContent.Content = new OverviewView();
+
+        }
+
+        private void RegisterProductView_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new RegisterProduct();
+        }
+
+        private void DeprecationView_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new DeprecationView();
+        }
+
     }
 }

@@ -20,10 +20,18 @@
         <Button Content="Deprecate a product" Click="DeprecationView_Click" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,148,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
         <Rectangle HorizontalAlignment="Center" Height="1" Margin="0,85.5,0,0" Stroke="Gray" VerticalAlignment="Top" Width="800"/>
         <TextBlock HorizontalAlignment="Left" Margin="153,63,0,0" TextWrapping="Wrap" Text="Fill in the required information for registration" VerticalAlignment="Top" FontFamily="Times New Roman" Foreground="gray"/>
-        <Button Content="Register a product" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="152,124,0,0" VerticalAlignment="Top" Width="183" Background="white"/>
-        <Rectangle HorizontalAlignment="Left" Height="1" Margin="150,150,0,0" Stroke="Gray" VerticalAlignment="Top" Width="400"/>
-        <Button Content="Clear" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="300,350,0,0" VerticalAlignment="Top" Width="86" RenderTransformOrigin="0.629,0.476" Background="red" Foreground="white"/>
+
+
+        <Button Content="Clear" Click="Clear_Click" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="300,350,0,0" VerticalAlignment="Top" Width="86" RenderTransformOrigin="0.629,0.476" Background="red" Foreground="white"/>
         <Button Content="Save" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="418,350,0,0" VerticalAlignment="Top" Width="86" Background="Green" Foreground="white"/>
+        <TextBlock HorizontalAlignment="Left" Margin="168,110,0,0" TextWrapping="Wrap" Text="Product Name" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="168,150,0,0" TextWrapping="Wrap" Text="Category" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="168,190,0,0" TextWrapping="Wrap" Text="Amount" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="168,235,0,0" TextWrapping="Wrap" Text="Expiration Date" VerticalAlignment="Top"/>
+        <TextBox x:Name="PName" HorizontalAlignment="Left" Margin="500,110,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PCategory" HorizontalAlignment="Left" Margin="500,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PAmount" HorizontalAlignment="Left" Margin="500,190,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="PExpirationDate" HorizontalAlignment="Left" Margin="498,230,0,0" VerticalAlignment="Top" Width="123"/>
 
 
 

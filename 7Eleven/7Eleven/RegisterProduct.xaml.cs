@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
 
 namespace _7Eleven
 {
@@ -49,6 +50,15 @@ namespace _7Eleven
         {
             var main = Application.Current.MainWindow as MainWindow;
             main.MainContent.Content = null;
+        }
+
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            PName.Text = string.Empty;
+            PCategory.Text = string.Empty;
+            PAmount.Text = string.Empty;
+            PExpirationDate.Text = null;
+
         }
 
     }

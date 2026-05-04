@@ -14,7 +14,7 @@ namespace _7Eleven.Model
         public Catagory (string foodname, FoodCategory foodtype)
         {
             FoodName = foodname;
-            FoodType = foodtype;
+            FoodType = foodtype; 
 
         }
 

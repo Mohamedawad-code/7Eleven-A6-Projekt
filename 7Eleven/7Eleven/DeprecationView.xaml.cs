@@ -42,11 +42,17 @@ namespace _7Eleven
             main.MainContent.Content = new RegisterProduct();
         }
 
+
+
         private void OverviewView_Click(object sender, RoutedEventArgs e)
+
         {
             var main = Application.Current.MainWindow as MainWindow;
             main.MainContent.Content = new OverviewView();
+
         }
+
+
 
     }
 }

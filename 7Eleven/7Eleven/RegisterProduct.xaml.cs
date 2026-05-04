@@ -51,5 +51,6 @@ namespace _7Eleven
             main.MainContent.Content = null;
         }
 
+
     }
 }

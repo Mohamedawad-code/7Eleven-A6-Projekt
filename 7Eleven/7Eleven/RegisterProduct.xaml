@@ -16,14 +16,15 @@
         <Button Content="Home" Click="Home_Click" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top" Height="61" Width="146"/>
 
 
-        <Button Content="Register product" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,87,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
-        <Button Content="Deprecate a product" Click="DeprecationView_Click" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,148,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
+        <Button Content="Register product" FontFamily="Times New Roman" Background="gray" HorizontalAlignment="Left" Margin="0,148,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
+        <Button Content="Deprecate a product" Click="DeprecationView_Click" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,210,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
         <Rectangle HorizontalAlignment="Center" Height="1" Margin="0,85.5,0,0" Stroke="Gray" VerticalAlignment="Top" Width="800"/>
         <TextBlock HorizontalAlignment="Left" Margin="153,63,0,0" TextWrapping="Wrap" Text="Fill in the required information for registration" VerticalAlignment="Top" FontFamily="Times New Roman" Foreground="gray"/>
         <Button Content="Register a product" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="152,124,0,0" VerticalAlignment="Top" Width="183" Background="white"/>
         <Rectangle HorizontalAlignment="Left" Height="1" Margin="150,150,0,0" Stroke="Gray" VerticalAlignment="Top" Width="400"/>
         <Button Content="Clear" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="300,350,0,0" VerticalAlignment="Top" Width="86" RenderTransformOrigin="0.629,0.476" Background="red" Foreground="white"/>
         <Button Content="Save" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="418,350,0,0" VerticalAlignment="Top" Width="86" Background="Green" Foreground="white"/>
+        <Button Content="Overview" HorizontalAlignment="Left" Click="OverviewView_Click" Margin="0,87,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
 
 
 

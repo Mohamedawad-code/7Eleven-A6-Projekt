@@ -13,13 +13,14 @@
 
         <Rectangle HorizontalAlignment="Left" Height="450" Margin="145,0.6,0,0" Stroke="gray" VerticalAlignment="Top" Width="1"/>
         <Button Content="Back" Click="Back_Click" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="181,350,0,0" VerticalAlignment="Top" Width="85"/>
-        <Button Content="Home" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top" Height="61" Width="146"/>
+        <Button Content="Home" Click="Home_Click" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top" Height="61" Width="146"/>
 
 
-        <Button Content="Register product" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,86,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
-        <Button Content="Deprecation of product" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,146,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
-        <DataGrid d:ItemsSource="{d:SampleData ItemCount=15}" Margin="170,40,22,64"/>
+        <Button Content="Register product" Click="RegisterProductView_Click" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,148,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
+        <Button Content="Deprecation of product" Click="DeprecationView_Click" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,210,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
+        <DataGrid d:ItemsSource="{d:SampleData ItemCount=15}" Margin="170,40,22,64" SelectionChanged="DataGrid_SelectionChanged"/>
 
+        <Button Content="Overview" HorizontalAlignment="Left" Background="gray" Click="OverviewView_Click" Margin="0,87,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
 
 
 

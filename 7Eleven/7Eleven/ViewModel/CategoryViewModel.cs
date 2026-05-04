@@ -10,6 +10,7 @@ namespace _7Eleven.ViewModel
     public class CategoryViewModel
     {
         private List<Category> _categories = new List<Category>();
+        private CategoryRepository _repo = new CategoryRepository();
 
         public Category AddCategory(string Newfoodname, FoodCategory Newfoodtype)
         {
@@ -17,6 +18,7 @@ namespace _7Eleven.ViewModel
             if (NewCategory is null)
                 throw new ArgumentException("Category doesnt exist");
 
+            _repo.AddCategory(NewCategory);
             _categories.Add(NewCategory);
             return NewCategory;
         }
@@ -26,7 +28,7 @@ namespace _7Eleven.ViewModel
             var category = _categories.FirstOrDefault(c => c.ID == id);
             if (category is null)
                 throw new ArgumentException("Category doesnt exist");
-
+            _repo.DeleteCategory(category.ID);
             _categories.Remove(category);
         }
 
@@ -39,19 +41,28 @@ namespace _7Eleven.ViewModel
             UpdatedCategory.FoodName = Updatedfoodname;
             UpdatedCategory.FoodType = Updatedfoodtype;
 
+            _repo.UpdateCategory(UpdatedCategory);
+
+
             return UpdatedCategory;
 
         }
 
         public List<Category> GetAllCategories()
         {
+
+            _categories = _repo.GetAll();
             return _categories;
         }
 
         public Category GetByidCategory(Guid id)
         {
-            var category = _categories.FirstOrDefault(c => c.ID == id);
+            var category = _repo.GetById(id);
+            if (category is null)
+                throw new ArgumentException("Category doesnt exist");
+
             return category;
         }
     }
 }
+ 

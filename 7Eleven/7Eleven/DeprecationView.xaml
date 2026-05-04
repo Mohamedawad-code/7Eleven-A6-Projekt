@@ -16,11 +16,11 @@
         <Button Content="Home" Click="Home_Click" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top" Height="61" Width="146"/>
 
 
-        <Button Content="Register product" Click="RegisterProductView_Click" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,87,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
-        <Button Content="Deprecate a product" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,148,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
+        <Button Content="Register product" Click="RegisterProductView_Click" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,148,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
+        <Button Content="Deprecate a product" FontFamily="Times New Roman" HorizontalAlignment="Left" Background="gray" Margin="0,210,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
         <Rectangle HorizontalAlignment="Center" Height="1" Margin="0,85.5,0,0" Stroke="Gray" VerticalAlignment="Top" Width="800"/>
         <TextBlock HorizontalAlignment="Left" Margin="153,63,0,0" TextWrapping="Wrap" Text="Fill in the required information for deprecation" VerticalAlignment="Top" FontFamily="Times New Roman" Foreground="gray"/>
-         
+
         <Rectangle HorizontalAlignment="Left" Height="1" Margin="150,150,0,0" Stroke="Gray" VerticalAlignment="Top" Width="467"/>
         <Button Content="Clear" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="300,350,0,0" VerticalAlignment="Top" Width="86" RenderTransformOrigin="0.629,0.476" Background="red" Foreground="white"/>
         <Button Content="Deprecate" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="418,350,0,0" VerticalAlignment="Top" Width="86" Background="Green" Foreground="white"/>
@@ -29,6 +29,7 @@
         <TextBox HorizontalAlignment="Left" Margin="395,118,0,0" TextWrapping="Wrap" Text="Quantity" VerticalAlignment="Top" Width="74" Height="24"/>
         <ComboBox HorizontalAlignment="Left" Margin="498,122,0,0" VerticalAlignment="Top" Width="120" />
         <TextBlock HorizontalAlignment="Left" Margin="500,100,0,0" TextWrapping="Wrap" Text="Reason" VerticalAlignment="Top" Foreground="gray" FontFamily="Times New Roman" FontSize="14"/>
+        <Button Content="Overview" Click="OverviewView_Click" HorizontalAlignment="Left" Margin="0,87,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
 
 
     </Grid>

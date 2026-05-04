@@ -16,8 +16,8 @@
         <Button Content="Home" Click="Home_Click" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top" Height="61" Width="146"/>
 
 
-        <Button Content="Register product" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,87,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
-        <Button Content="Deprecate a product" Click="DeprecationView_Click" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,148,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
+        <Button Content="Register product" FontFamily="Times New Roman" Background="gray" HorizontalAlignment="Left" Margin="0,148,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
+        <Button Content="Deprecate a product" Click="DeprecationView_Click" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,210,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
         <Rectangle HorizontalAlignment="Center" Height="1" Margin="0,85.5,0,0" Stroke="Gray" VerticalAlignment="Top" Width="800"/>
         <TextBlock HorizontalAlignment="Left" Margin="153,63,0,0" TextWrapping="Wrap" Text="Fill in the required information for registration" VerticalAlignment="Top" FontFamily="Times New Roman" Foreground="gray"/>
 
@@ -32,6 +32,7 @@
         <TextBox x:Name="PCategory" HorizontalAlignment="Left" Margin="500,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="PAmount" HorizontalAlignment="Left" Margin="500,190,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <DatePicker x:Name="PExpirationDate" HorizontalAlignment="Left" Margin="498,230,0,0" VerticalAlignment="Top" Width="123"/>
+        <Button Content="Overview" HorizontalAlignment="Left" Click="OverviewView_Click" Margin="0,87,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
 
 
 

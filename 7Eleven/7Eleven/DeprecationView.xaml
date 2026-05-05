@@ -22,12 +22,12 @@
         <TextBlock HorizontalAlignment="Left" Margin="153,63,0,0" TextWrapping="Wrap" Text="Fill in the required information for deprecation" VerticalAlignment="Top" FontFamily="Times New Roman" Foreground="gray"/>
          
         <Rectangle HorizontalAlignment="Left" Height="1" Margin="150,150,0,0" Stroke="Gray" VerticalAlignment="Top" Width="467"/>
-        <Button Content="Clear" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="300,350,0,0" VerticalAlignment="Top" Width="86" RenderTransformOrigin="0.629,0.476" Background="red" Foreground="white"/>
+        <Button Content="Clear" Click="Clear_Click" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="300,350,0,0" VerticalAlignment="Top" Width="86" RenderTransformOrigin="0.629,0.476" Background="red" Foreground="white"/>
         <Button Content="Deprecate" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="418,350,0,0" VerticalAlignment="Top" Width="86" Background="Green" Foreground="white"/>
         <ComboBox HorizontalAlignment="Left" Margin="156,122,0,0" VerticalAlignment="Top" Width="215"/>
         <TextBlock HorizontalAlignment="Left" Margin="157,100,0,0" TextWrapping="Wrap" Text="Product" VerticalAlignment="Top" FontFamily="Times New Roman" Width="100" Height="20" FontSize="14" Foreground="gray"/>
         <TextBox HorizontalAlignment="Left" Margin="395,118,0,0" TextWrapping="Wrap" Text="Quantity" VerticalAlignment="Top" Width="74" Height="24"/>
-        <ComboBox HorizontalAlignment="Left" Margin="498,122,0,0" VerticalAlignment="Top" Width="120" />
+        <ComboBox  HorizontalAlignment="Left" Margin="498,122,0,0" VerticalAlignment="Top" Width="120" />
         <TextBlock HorizontalAlignment="Left" Margin="500,100,0,0" TextWrapping="Wrap" Text="Reason" VerticalAlignment="Top" Foreground="gray" FontFamily="Times New Roman" FontSize="14"/>
 
 

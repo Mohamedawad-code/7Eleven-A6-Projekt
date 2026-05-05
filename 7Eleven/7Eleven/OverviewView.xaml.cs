@@ -25,6 +25,7 @@ namespace _7Eleven
             InitializeComponent();
         }
 
+        //Back button to navigate back to the main menu
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             var main = Application.Current.MainWindow as MainWindow;

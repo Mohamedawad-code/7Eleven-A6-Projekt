@@ -61,8 +61,24 @@ namespace _7Eleven
         {
             PName.Text = string.Empty;
             PCategory.Text = string.Empty;
-            PAmount.Text = string.Empty;
+            PQuantity.Text = string.Empty;
             PExpirationDate.Text = null;
+        }
+
+        private void SaveNewProduct_Click(object sender, RoutedEventArgs e)
+        {
+            if (!int.TryParse(PQuantity.Text, out int quantity))
+            {
+                MessageBox.Show(
+                    "Error: Please enter a valid quantity.",
+                    "Invalid Input",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+
+
+                return;
+            }
+
         }
 
     }

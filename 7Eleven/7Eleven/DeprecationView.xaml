@@ -23,14 +23,14 @@
 
         <Rectangle HorizontalAlignment="Left" Height="1" Margin="150,150,0,0" Stroke="Gray" VerticalAlignment="Top" Width="467"/>
         <Button Content="Clear" Click="Clear_Click" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="300,350,0,0" VerticalAlignment="Top" Width="86" RenderTransformOrigin="0.629,0.476" Background="red" Foreground="white"/>
-        <Button Content="Deprecate" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="418,350,0,0" VerticalAlignment="Top" Width="86" Background="Green" Foreground="white"/>
-        <ComboBox HorizontalAlignment="Left" Margin="156,122,0,0" VerticalAlignment="Top" Width="215"/>
+        <Button Content="Deprecate" Click="DeprecateProduct_Click" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="418,350,0,0" VerticalAlignment="Top" Width="86" Background="Green" Foreground="white"/>
+        <ComboBox x:Name="PName" IsEditable="True" HorizontalAlignment="Left" Margin="156,122,0,0" VerticalAlignment="Top" Width="215"/>
         <TextBlock HorizontalAlignment="Left" Margin="157,100,0,0" TextWrapping="Wrap" Text="Product" VerticalAlignment="Top" FontFamily="Times New Roman" Width="100" Height="20" FontSize="14" Foreground="gray"/>
-        <TextBox HorizontalAlignment="Left" Margin="395,118,0,0" TextWrapping="Wrap" Text="Quantity" VerticalAlignment="Top" Width="74" Height="24"/>
-        <ComboBox  HorizontalAlignment="Left" Margin="498,122,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox x:Name="PQuantity" HorizontalAlignment="Left" Margin="395,118,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="74" Height="24"/>
+        <ComboBox x:Name="PReason" IsEditable="True" HorizontalAlignment="Left" Margin="498,122,0,0" VerticalAlignment="Top" Width="120" />
         <TextBlock HorizontalAlignment="Left" Margin="500,100,0,0" TextWrapping="Wrap" Text="Reason" VerticalAlignment="Top" Foreground="gray" FontFamily="Times New Roman" FontSize="14"/>
         <Button Content="Overview" Click="OverviewView_Click" HorizontalAlignment="Left" Margin="0,87,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
-
+        <TextBlock HorizontalAlignment="Left" Margin="395,100,0,0" TextWrapping="Wrap" Text="Quantity" VerticalAlignment="Top" FontFamily="Times New Roman" Width="100" Height="20" FontSize="14" Foreground="gray"/>
 
     </Grid>
 </UserControl>

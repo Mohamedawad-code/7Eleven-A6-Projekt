@@ -55,7 +55,28 @@ namespace _7Eleven
 
         }
 
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            //Clear all the textboxes and datepicker
+            PName.Text = "";
+            PQuantity.Text = "";
+            PReason.Text = "";
+        }
 
+        private void DeprecateProduct_Click(object sender, RoutedEventArgs e)
+        {
+            if (!int.TryParse(PQuantity.Text, out int quantity))
+            {
+                MessageBox.Show(
+                    "Error: Please enter a valid quantity.",
+                    "Invalid Input",
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error);
+
+
+                return;
+            }
+        }
 
     }
 }

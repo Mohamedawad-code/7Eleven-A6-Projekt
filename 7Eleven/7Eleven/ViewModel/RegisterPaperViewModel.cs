@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using _7Eleven.Model;
 
 namespace _7Eleven.ViewModel
@@ -10,12 +8,14 @@ namespace _7Eleven.ViewModel
     public class RegisterPaperViewModel
     {
         private List<RegisterPaper> _registerpaper = new List<RegisterPaper>();
+        private RegisterPaperRepository _repo = new RegisterPaperRepository();
 
-        public RegisterPaper CreateRegisterPaper(Product product, Category category, int amount, DateTime expiringDate, Coworker registeredBy, DateTime registerDate)
+        public RegisterPaper CreateRegisterPaper(Product Newproduct, Category Newcategory, int Newamount, DateTime NewexpiringDate, Coworker NewregisteredBy, DateTime NewregisterDate)
         {
-            var newRegisterPaper = new RegisterPaper(product, category, amount, expiringDate, registeredBy, registerDate);
+            var newRegisterPaper = new RegisterPaper(Newproduct, Newcategory, Newamount, NewexpiringDate, NewregisteredBy, NewregisterDate);
 
-            _registerpaper.Add(newRegisterPaper);
+            _repo.AddRegisterPaper(newRegisterPaper);  
+            _registerpaper.Add(newRegisterPaper);       
 
             return newRegisterPaper;
         }
@@ -24,39 +24,27 @@ namespace _7Eleven.ViewModel
         {
             var registerPaper = _registerpaper.FirstOrDefault(r => r.ID == id);
             if (registerPaper is null)
-                throw new ArgumentException("register_paper is null");
+                throw new ArgumentException("RegisterPaper does not exist");
 
-            _registerpaper.Remove(registerPaper);
+            _repo.DeleteRegisterPaper(registerPaper.ID); 
+            _registerpaper.Remove(registerPaper);          
         }
 
         public List<RegisterPaper> GetAllRegisterPapers()
         {
+            _registerpaper = _repo.GetAll();  
             return _registerpaper;
         }
 
         public RegisterPaper GetByIdRegisterPaper(Guid id)
         {
-            var registerpaper = _registerpaper.FirstOrDefault(r => r.ID == id);
+            var registerpaper = _repo.GetById(id);  
             if (registerpaper is null)
                 throw new ArgumentException("Invalid");
 
             return registerpaper;
         }
 
-        // Query methods for the table view
-        public List<RegisterPaper> GetByCoworker(int coworkerId)
-        {
-            return _registerpaper.Where(r => r.RegisteredBy.Id == coworkerId).ToList();
-        }
-
-        public List<RegisterPaper> GetByProduct(string productName)
-        {
-            return _registerpaper.Where(r => r.Product.Name.Contains(productName, StringComparison.OrdinalIgnoreCase)).ToList();
-        }
-
-        public List<RegisterPaper> GetByDateRange(DateTime start, DateTime end)
-        {
-            return _registerpaper.Where(r => r.RegisterDate >= start && r.RegisterDate <= end).ToList();
-        }
+     
     }
 }

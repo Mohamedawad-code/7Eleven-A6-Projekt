@@ -48,10 +48,14 @@ namespace _7Eleven
 
         //Overview button to navigate to the overview page
         private void OverviewView_Click(object sender, RoutedEventArgs e)
+
         {
             var main = Application.Current.MainWindow as MainWindow;
             main.MainContent.Content = new OverviewView();
+
         }
+
+
 
     }
 }

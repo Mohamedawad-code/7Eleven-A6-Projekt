@@ -26,6 +26,7 @@ namespace _7Eleven
             InitializeComponent();
         }
 
+        //Back button to navigate back to the main menu
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             var main = Application.Current.MainWindow as MainWindow;
@@ -34,31 +35,34 @@ namespace _7Eleven
             main.MainContent.Content = null;
         }
 
+        //Deprecation button to navigate to the deprecation page
         private void DeprecationView_Click(object sender, RoutedEventArgs e)
         {
             var main = Application.Current.MainWindow as MainWindow;
             main.MainContent.Content = new DeprecationView();
         }
 
+        //Overview button to navigate to the overview page
         private void OverviewView_Click(object sender, RoutedEventArgs e)
         {
             var main = Application.Current.MainWindow as MainWindow;
             main.MainContent.Content = new OverviewView();
         }
 
+        //Home button to navigate back to the main menu
         private void Home_Click(object sender, RoutedEventArgs e)
         {
             var main = Application.Current.MainWindow as MainWindow;
             main.MainContent.Content = null;
         }
 
+        //Clear button to clear all the textboxes and datepicker
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
             PName.Text = string.Empty;
             PCategory.Text = string.Empty;
             PAmount.Text = string.Empty;
             PExpirationDate.Text = null;
-
         }
 
     }

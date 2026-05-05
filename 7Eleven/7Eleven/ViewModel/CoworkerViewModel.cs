@@ -11,12 +11,14 @@ namespace _7Eleven.ViewModel
     public class CoworkerViewModel
     {
         private List<Coworker> _coworkers = new List<Coworker>();
+        private CoworkerRepository _repo = new CoworkerRepository();
 
         public Coworker CreateCoWorker( string Newname, int Newid)
         {
             var newcoworker = new Coworker(Newname, Newid);
 
             _coworkers.Add(newcoworker);
+            _repo.AddCoworker(newcoworker);
             return newcoworker;
         }
 
@@ -27,6 +29,7 @@ namespace _7Eleven.ViewModel
                 throw new ArgumentException("Invalid");
 
             _coworkers.Remove(coworker);
+            _repo.DeleteCoworker(coworker.Id);
         }
 
 
@@ -39,17 +42,20 @@ namespace _7Eleven.ViewModel
             updatedcoworker.Name = updatedName;
             updatedcoworker.Id = UpdatedId;
 
+            _repo.UpdateCoworker(updatedcoworker);
+                
             return updatedcoworker;
         }
 
         public List<Coworker> GetAllCoworkers()
         {
+            _coworkers = _repo.GetAll();
             return _coworkers;
         }
 
         public Coworker GetByIdCoworker(int id)
         {
-            var coworker = _coworkers.FirstOrDefault(c => c.Id == id);
+            var coworker = _repo.GetById(id);
             if (coworker is null)
                 throw new ArgumentException("Invalid or doesnt exist");
 

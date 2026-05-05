@@ -10,12 +10,15 @@ namespace _7Eleven.ViewModel
     public class ProductViewModel
     {
         private List<Product> _products = new List<Product>();
+        private ProductRepository _repo = new ProductRepository();
 
         public Product CreateNewProduct(string Newname, int Newamount, DateTime NewtimeReceived, DateTime Newexpiringdate)
         {
             var NewProduct = new Product(Newname, Newamount, NewtimeReceived, Newexpiringdate);
 
             _products.Add(NewProduct);
+            _repo.AddProduct(NewProduct);
+            
             return NewProduct;
         }
 
@@ -25,6 +28,7 @@ namespace _7Eleven.ViewModel
             if (product is null)
                 throw new ArgumentException("Product doest exist");
 
+            _repo.DeleteProduct(product.ProductNO);
             _products.Remove(product);
 
         }

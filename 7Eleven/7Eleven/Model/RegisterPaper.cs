@@ -9,25 +9,21 @@ namespace _7Eleven.Model
     public class RegisterPaper
     {
         public Guid ID { get; set; } = Guid.NewGuid();
-        private Coworker RegisteredBy { get; set; }
-        private  List<Category> _categories { get; set; }
-        private List<Depreciation> _depreciations { get; set; }
-        private List<Product> _products { get; set; }
-        public DateTime Date { get; set; }
+        public Product Product { get; set; }
+        public Category Category { get; set; }
+        public int Amount { get; set; }
+        public DateTime ExpiringDate { get; set; }
+        public Coworker RegisteredBy { get; set; }
+        public DateTime RegisterDate { get; set; }
 
-        
-        public RegisterPaper (Coworker registeredby
-            , List<Category> categories
-            , List<Depreciation> depreciations
-            , List<Product> products
-            , DateTime date)
+        public RegisterPaper(Product product, Category category, int amount, DateTime expiringDate, Coworker registeredBy, DateTime registerDate)
         {
-            RegisteredBy = registeredby;
-            _categories = categories;
-            _depreciations = depreciations;
-            _products = products;
-            Date = date;
+            Product = product;
+            Category = category;
+            Amount = amount;
+            ExpiringDate = expiringDate;
+            RegisteredBy = registeredBy;
+            RegisterDate = registerDate;
         }
-
     }
 }

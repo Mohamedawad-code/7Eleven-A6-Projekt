@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:_7Eleven"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    
-    
+
+
 
     <DockPanel>
 
@@ -15,20 +15,50 @@
 
         <Grid>
             <Rectangle HorizontalAlignment="Left" Height="1" Margin="0,22,0,0" Stroke="Black" VerticalAlignment="Top" Width="800"/>
-            <Button Content="Overview" Click="OverviewViewPage_Click"  FontSize="25" FontFamily="Times New Roman" HorizontalAlignment="Center" Margin="0,150,0,0" VerticalAlignment="Top" Height="58" Width="266" Background="white" BorderThickness="2"/>
+            <Button Content="Overview" Click="OverviewViewPage_Click"  FontSize="25" FontFamily="Times New Roman" HorizontalAlignment="Center" Margin="0,150,0,0" VerticalAlignment="Top" Height="58" Width="266" Background="White" BorderBrush="Black" BorderThickness="2"/>
             <Label Content="Menu" FontSize="30" FontFamily="Times New Roman" HorizontalAlignment="Center" Margin="0,44,0,0" VerticalAlignment="Top" Height="55" Width="96"/>
-            <Button Content="Register product" Click="RegisterProductView_Click" FontSize="25" FontFamily="Times New Roman" HorizontalAlignment="Center" Margin="0,225,0,0" VerticalAlignment="Top" Height="58" Width="266" Background="white" BorderThickness="2"/>
-            <Button Content="Depreciation of product" Click="DeprecationView_Click" FontSize="25" FontFamily="Times New Roman" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" Height="58" Width="266" Background=" white" BorderThickness="2"/>
+            <Button Content="Register" Click="RegisterProductView_Click" FontSize="25" FontFamily="Times New Roman" HorizontalAlignment="Center" Margin="0,225,0,0" VerticalAlignment="Top" Height="58" Width="266" Background="white" BorderBrush="black" BorderThickness="2"/>
+            <Button Content="Deprecate" Click="DeprecationView_Click"  FontSize="25" FontFamily="Times New Roman" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" Height="58" Width="266" Background=" white" BorderBrush="Black" BorderThickness="2"/>
 
             <TextBlock 
                 HorizontalAlignment="Left" Margin="350,4,0,0" TextWrapping="Wrap" FontWeight="Bold" VerticalAlignment="Top">
-            <Run Text="SEV" Foreground="Red"/><Run Text="EN" Foreground="Orange" />
+            <Run Text="SEV" Foreground="Red"/><Run Text="EN" Foreground="#FFFD7E14" />
                 <Run Text="-" Foreground="Orange" />
-                <Run Text="ELEVEN" Foreground="Green"  />
+                <Run Text="ELEVEN" Foreground="#FF006546"  />
 
             </TextBlock>
 
-            <ContentControl x:Name="MainContent" Margin="0,23,0,2"/>
+            <Rectangle HorizontalAlignment="Center" Height="248" Margin="0,131,0,0" Stroke="#FF006546" StrokeThickness="10" VerticalAlignment="Top" Width="303"/>
+
+
+
+
+            <Image Source="/icons/icons8-delete-100.png" Margin="253,304,474,83"/>
+            <Image Source="/icons/icons8-add-100.png" Margin="263,231,478,156"/>
+            <Image Source="/icons/icons8-overview-100.png" Margin="254,156,473,232"/>
+
+            <Image Source="/icons/7-eleven-seeklogo.png" Margin="250,368,249,-5"/>
+            <Image Source="/icons/caffe.png" Margin="-37,328,693,11"/>
+
+
+            <Image Source="/icons/icons8-horizontal-line-96.png" Margin="355,68,368,335" Stretch="Fill"/>
+            <Image Source="/icons/icons8-horizontal-line-96.png" Margin="355,36,368,367" Stretch="Fill"/>
+
+            <Ellipse HorizontalAlignment="Left" Height="100" Margin="757,33,0,0" Stroke="orange" Fill="#FFFD9136" VerticalAlignment="Top" Width="100"/>
+
+            <Ellipse HorizontalAlignment="Left" Height="100" Margin="642,194,0,0" Stroke="green" Fill="#FF006546" VerticalAlignment="Top" Width="100"/>
+            <Ellipse HorizontalAlignment="Left" Height="100" Margin="106,386,0,0" Stroke="green" Fill="#FF006546" VerticalAlignment="Top" Width="100"/>
+            <Ellipse HorizontalAlignment="Left" Height="108" Margin="720,360,0,0" Stroke="orange" Fill="#FFFD9136" VerticalAlignment="Top" Width="117"/>
+            <Ellipse HorizontalAlignment="Left" Height="100" Margin="36,104,0,0" Stroke="orange" Fill="#FFFD9136" VerticalAlignment="Top" Width="100"/>
+
+            <ContentControl x:Name="MainContent" Margin="0,23,0,2">
+
+
+
+            </ContentControl>
+
+
+
 
         </Grid>
     </DockPanel>

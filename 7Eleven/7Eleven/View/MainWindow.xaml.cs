@@ -38,6 +38,7 @@ namespace _7Eleven
         {
             MainContent.Content = new DeprecationView();
         }
+       
 
     }
 }

@@ -10,7 +10,56 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="icons\7-eleven-logo-icon.webp" />
+    <None Remove="icons\7-eleven-logo-png_seeklogo-190541.png" />
+    <None Remove="icons\7-eleven-seeklogo.png" />
+    <None Remove="icons\caffe.png" />
+    <None Remove="icons\food.png" />
+    <None Remove="icons\icons8-add-96.png" />
+    <None Remove="icons\icons8-border-bottom-100.png" />
+    <None Remove="icons\icons8-delete-100.png" />
+    <None Remove="icons\icons8-horizontal-line-96.png" />
+    <None Remove="icons\icons8-overview-100.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="icons\7-eleven-logo-icon.webp">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\7-eleven-logo-png_seeklogo-190541.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\7-eleven-seeklogo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\caffe.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\food.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\icons8-border-bottom-100.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="icons\icons8-add-96.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\icons8-delete-100.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\icons8-horizontal-line-96.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\icons8-overview-100.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

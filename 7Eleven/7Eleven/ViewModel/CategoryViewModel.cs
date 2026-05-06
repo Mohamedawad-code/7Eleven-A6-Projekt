@@ -1,15 +1,16 @@
-﻿using System;
+﻿using _7Eleven.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using _7Eleven.Model;
 
 namespace _7Eleven.ViewModel
 {
     public class CategoryViewModel
     {
-        private List<Category> _categories = new List<Category>();
+        private ObservableCollection<Category> _categories = new ObservableCollection<Category>();
         private CategoryRepository _repo = new CategoryRepository();
 
         public Category AddCategory(string Newfoodname, FoodCategory Newfoodtype)
@@ -48,10 +49,11 @@ namespace _7Eleven.ViewModel
 
         }
 
-        public List<Category> GetAllCategories()
+        public ObservableCollection<Category> GetAllCategories()
         {
 
-            _categories = _repo.GetAll();
+            var result = _repo.GetAll();
+            _categories = new ObservableCollection<Category>(result);
             return _categories;
         }
 

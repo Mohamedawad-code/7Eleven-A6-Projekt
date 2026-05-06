@@ -1,13 +1,14 @@
-﻿using System;
+﻿using _7Eleven.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using _7Eleven.Model;
 
 namespace _7Eleven.ViewModel
 {
     public class RegisterPaperViewModel
     {
-        private List<RegisterPaper> _registerpaper = new List<RegisterPaper>();
+        private ObservableCollection<RegisterPaper> _registerpaper = new ObservableCollection<RegisterPaper>();
         private RegisterPaperRepository _repo = new RegisterPaperRepository();
 
         public RegisterPaper CreateRegisterPaper(Product Newproduct, Category Newcategory, int Newamount, DateTime NewexpiringDate, Coworker NewregisteredBy, DateTime NewregisterDate)
@@ -30,9 +31,10 @@ namespace _7Eleven.ViewModel
             _registerpaper.Remove(registerPaper);          
         }
 
-        public List<RegisterPaper> GetAllRegisterPapers()
+        public ObservableCollection<RegisterPaper> GetAllRegisterPapers()
         {
-            _registerpaper = _repo.GetAll();  
+            var result = _repo.GetAll();
+            _registerpaper = new ObservableCollection<RegisterPaper>(result);
             return _registerpaper;
         }
 

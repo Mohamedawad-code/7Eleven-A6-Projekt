@@ -1,15 +1,16 @@
-﻿using System;
+﻿using _7Eleven.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using _7Eleven.Model;
 
 namespace _7Eleven.ViewModel
 {
     public class ProductViewModel
     {
-        private List<Product> _products = new List<Product>();
+        private ObservableCollection<Product> _products = new ObservableCollection<Product>();
         private ProductRepository _repo = new ProductRepository();
 
         public Product CreateNewProduct(string Newname, int Newamount, DateTime NewtimeReceived, DateTime Newexpiringdate)
@@ -48,9 +49,10 @@ namespace _7Eleven.ViewModel
             return updatedProduct;
         }
 
-        public List<Product> GetAllProducts()
+        public ObservableCollection<Product> GetAllProducts()
         {
-            _products = _repo.GetAll();
+            var result = _repo.GetAll();
+            _products = new ObservableCollection<Product>(result);
             return _products;
         }
 

@@ -1,6 +1,7 @@
 ﻿using _7Eleven.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace _7Eleven.ViewModel
 {
     public class CoworkerViewModel
     {
-        private List<Coworker> _coworkers = new List<Coworker>();
+        private ObservableCollection<Coworker> _coworkers = new ObservableCollection<Coworker>();
         private CoworkerRepository _repo = new CoworkerRepository();
 
         public Coworker CreateCoWorker( string Newname, int Newid)
@@ -47,9 +48,10 @@ namespace _7Eleven.ViewModel
             return updatedcoworker;
         }
 
-        public List<Coworker> GetAllCoworkers()
+        public ObservableCollection<Coworker> GetAllCoworkers()
         {
-            _coworkers = _repo.GetAll();
+            var result = _repo.GetAll();
+            _coworkers = new ObservableCollection<Coworker>(result);
             return _coworkers;
         }
 

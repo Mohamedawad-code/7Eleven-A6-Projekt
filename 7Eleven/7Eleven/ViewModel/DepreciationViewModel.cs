@@ -1,15 +1,16 @@
-﻿using System;
+﻿using _7Eleven.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using _7Eleven.Model;
 
 namespace _7Eleven.ViewModel
 {
     public class DepreciationViewModel
     {
-        private List<Depreciation> _depreciation = new List<Depreciation>();
+        private ObservableCollection<Depreciation> _depreciation = new ObservableCollection<Depreciation>();
         private DepreciationRepository _repo = new DepreciationRepository();
 
         public Depreciation CreateDepreciation(DateTime newDate, Product newProductdep)
@@ -46,9 +47,10 @@ namespace _7Eleven.ViewModel
             return updatedDepreciation;
         }
 
-        public List<Depreciation> GetAll()
+        public ObservableCollection<Depreciation> GetAll()
         {
-            _depreciation = _repo.GetAll();
+            var  result = _repo.GetAll();
+            _depreciation = new ObservableCollection<Depreciation>(result);
             return _depreciation;
         }
 

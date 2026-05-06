@@ -44,20 +44,23 @@ namespace _7Eleven.ViewModel
             updatedProduct.TimeReceived = UpdatedtimeReceived;
             updatedProduct.ExpiringDate = Updatedexpiringdate;
 
+            _repo.UpdateProduct(updatedProduct);
             return updatedProduct;
         }
 
         public List<Product> GetAllProducts()
         {
+            _products = _repo.GetAll();
             return _products;
         }
 
         public Product GetByIdProduct(Guid productno)
         {
-            var product = _products.FirstOrDefault(p => p.ProductNO == productno);
+            var product = _repo.GetById(productno);
             if (product is null)
                 throw new ArgumentException("Invalid");
 
+            
             return product;
         }
     }

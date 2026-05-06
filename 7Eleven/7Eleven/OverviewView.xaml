@@ -18,7 +18,22 @@
 
         <Button Content="Register product" Click="RegisterProductView_Click" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,148,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
         <Button Content="Deprecation of product" Click="DeprecationView_Click" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,210,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
-        <DataGrid d:ItemsSource="{d:SampleData ItemCount=15}" Margin="170,40,22,64" SelectionChanged="DataGrid_SelectionChanged"/>
+        <DataGrid
+         x:Name="ProductDataGrid"
+         AutoGenerateColumns="False"
+         Margin="160,40,20,90">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Product Name" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="*"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="*"/>
+                <DataGridTextColumn Header="Created by" Binding="{Binding RegisteredBy}" Width="*" />
+                <DataGridTextColumn Header="Register Date" Binding="{Binding RegisterDate}" Width="*" /> 
+                <DataGridTextColumn Header="Expiration Date" Binding="{Binding ExpirationDate}" Width="*"/>
+            </DataGrid.Columns>
+
+
+        </DataGrid> 
 
         <Button Content="Overview" HorizontalAlignment="Left" Background="gray" Click="OverviewView_Click" Margin="0,87,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
 

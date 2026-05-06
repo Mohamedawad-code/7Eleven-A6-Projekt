@@ -23,6 +23,8 @@ namespace _7Eleven
         public DeprecationView()
         {
             InitializeComponent();
+
+            
         }
 
         //Back button to navigate back to the main menu

@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace _7Eleven.ViewModel
 {
@@ -12,6 +13,56 @@ namespace _7Eleven.ViewModel
     {
         private ObservableCollection<Product> _products = new ObservableCollection<Product>();
         private ProductRepository _repo = new ProductRepository();
+
+        public string NewName { get; set; }
+        public int NewAmount { get; set; }
+        public DateTime NewTimeReceived { get; set; }
+        public DateTime NewExpiringDate { get; set; }
+        public Product SelectedProduct { get; set; }
+       
+
+
+        public ICommand CreateNewProductCommand { get; }
+        public ICommand DeleteProductCommand { get; }
+        public ICommand EditProductCommand { get; }
+
+
+        public void ExcuteCreateNewProduct()
+        {
+            CreateNewProduct(NewName, NewAmount, NewTimeReceived, NewExpiringDate);
+        }
+
+        public void ExcuteDeleteProduct()
+        {
+            if (SelectedProduct is null)
+                return;
+
+            DeleteProduct(SelectedProduct.ProductNO);
+        }
+
+        public void ExcuteEditProducts()
+        {
+            if (SelectedProduct is null)
+                return;
+            EditProducts(NewName, NewAmount, NewTimeReceived, NewExpiringDate, SelectedProduct.ProductNO);
+        }
+
+
+        public ProductViewModel()
+        {
+           CreateNewProductCommand = new RelayCommand(ExcuteCreateNewProduct);
+           DeleteProductCommand = new RelayCommand(ExcuteDeleteProduct);
+           EditProductCommand = new RelayCommand(ExcuteEditProducts);
+
+            var result = _repo.GetAll();
+            _products = new ObservableCollection<Product>(result);  
+
+
+
+        }
+
+
+
 
         public Product CreateNewProduct(string Newname, int Newamount, DateTime NewtimeReceived, DateTime Newexpiringdate)
         {

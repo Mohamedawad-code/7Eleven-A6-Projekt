@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace _7Eleven.ViewModel
 {
@@ -12,6 +13,52 @@ namespace _7Eleven.ViewModel
     {
         private ObservableCollection<Depreciation> _depreciation = new ObservableCollection<Depreciation>();
         private DepreciationRepository _repo = new DepreciationRepository();
+
+        public DateTime NewDate { get; set; }
+        public Product SelectedProductDep { get; set; }
+        public Depreciation SelectedDepreciation { get; set; }
+
+
+        public ICommand CreateDepreciationCommand { get; }
+        public ICommand DeleteDepreciationCommand { get; }
+        public ICommand EditDepreciationCommand { get; }
+
+
+        public void ExcuteCreateDepreciation()
+        {
+            CreateDepreciation(NewDate, SelectedProductDep);
+        }
+
+        public void ExcuteDeleteDepreciation()
+        {
+            if (SelectedDepreciation is null)
+                return;
+            DeleteDepreciation(SelectedDepreciation.ID);
+        }
+
+        public void ExcuteEditDepreciation()
+        {
+            if (SelectedDepreciation is null)
+                return;
+            EditDepreciation(NewDate, SelectedProductDep, SelectedDepreciation.ID);
+        }
+
+
+        public DepreciationViewModel()
+        {
+            CreateDepreciationCommand = new RelayCommand(ExcuteCreateDepreciation);
+            DeleteDepreciationCommand = new RelayCommand(ExcuteDeleteDepreciation);
+            EditDepreciationCommand = new RelayCommand(ExcuteEditDepreciation);
+
+            var result = _repo.GetAll();
+            _depreciation = new ObservableCollection<Depreciation>(result);
+
+
+
+        }
+
+
+
 
         public Depreciation CreateDepreciation(DateTime newDate, Product newProductdep)
         {

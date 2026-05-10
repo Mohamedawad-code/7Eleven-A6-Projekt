@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Windows.Input;
 
 namespace _7Eleven.ViewModel
 {
@@ -13,6 +14,50 @@ namespace _7Eleven.ViewModel
     {
         private ObservableCollection<Coworker> _coworkers = new ObservableCollection<Coworker>();
         private CoworkerRepository _repo = new CoworkerRepository();
+
+        public string NewName { get; set; }
+        public int NewId { get; set; }
+        public Coworker SelectedCoworker { get; set; }
+
+
+        public ICommand CreateCoWorkerCommand { get; }
+        public ICommand DeleteWorkerCommand { get; }
+        public ICommand EditCoworkerCommand { get; }
+
+        public void ExcuteCreateCoWorker()
+        {
+            CreateCoWorker(NewName, NewId);
+        }
+
+        public void ExcuteDeleteWorker()
+        {
+            if (SelectedCoworker is null)
+                return;
+            DeleteWorker(SelectedCoworker.Id);
+        }
+
+        public void ExcuteEditCoworker()
+        {
+            if (SelectedCoworker is null)
+                return;
+            EditCoWorker(NewName, NewId, SelectedCoworker.Id);
+        }
+
+
+
+        public CoworkerViewModel()
+        {
+            CreateCoWorkerCommand = new RelayCommand(ExcuteCreateCoWorker);
+            DeleteWorkerCommand = new RelayCommand(ExcuteDeleteWorker);
+            EditCoworkerCommand = new RelayCommand(ExcuteEditCoworker);
+
+            var result = _repo.GetAll();
+            _coworkers = new ObservableCollection<Coworker>(result);
+        }
+
+
+
+
 
         public Coworker CreateCoWorker( string Newname, int Newid)
         {

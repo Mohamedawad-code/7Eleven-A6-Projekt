@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,10 +10,27 @@ using System.Windows.Input;
 
 namespace _7Eleven.ViewModel
 {
-    public class ProductViewModel
+    public class ProductViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<Product> _products = new ObservableCollection<Product>();
         private ProductRepository _repo = new ProductRepository();
+        public ObservableCollection<Product> Products
+        {
+            get => _products;
+            set
+            {
+                _products = value;
+                OnPropertyChanged(nameof(Products));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
 
         public string NewName { get; set; }
         public int NewAmount { get; set; }
@@ -55,7 +73,7 @@ namespace _7Eleven.ViewModel
            EditProductCommand = new RelayCommand(ExcuteEditProducts);
 
             var result = _repo.GetAll();
-            _products = new ObservableCollection<Product>(result);  
+            Products = new ObservableCollection<Product>(result);
 
 
 
@@ -103,7 +121,7 @@ namespace _7Eleven.ViewModel
         public ObservableCollection<Product> GetAllProducts()
         {
             var result = _repo.GetAll();
-            _products = new ObservableCollection<Product>(result);
+            Products = new ObservableCollection<Product>(result);
             return _products;
         }
 

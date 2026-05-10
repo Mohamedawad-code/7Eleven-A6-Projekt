@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace _7Eleven.ViewModel
 {
@@ -12,6 +13,46 @@ namespace _7Eleven.ViewModel
     {
         private ObservableCollection<Category> _categories = new ObservableCollection<Category>();
         private CategoryRepository _repo = new CategoryRepository();
+
+        public string Newfoodname { get; set; }
+        public FoodCategory NewfoodType { get; set; }
+        public Category SelectedCategory { get; set; }
+
+        
+        
+        public ICommand AddCategoryCommand { get; }
+        public ICommand DeleteCategoryCommand { get; }
+        public ICommand EditcategoryCommand { get; }
+
+
+        public void ExcuteAddCategory()
+        {
+            AddCategory(Newfoodname, NewfoodType);
+        }
+
+        public void ExcuteDeletecategory()
+        {
+            if (SelectedCategory is null) return;
+            DeleteCategory(SelectedCategory.ID);
+        }
+
+        public void ExcuteEditcategory()
+        {
+            if (SelectedCategory is null) return;  
+            EditCategory(Newfoodname, NewfoodType, SelectedCategory.ID);
+        }
+
+        public CategoryViewModel()
+        {
+            AddCategoryCommand = new RelayCommand(ExcuteAddCategory);
+            DeleteCategoryCommand = new RelayCommand(ExcuteDeletecategory);
+            EditcategoryCommand = new RelayCommand(ExcuteEditcategory);
+
+            var result = _repo.GetAll();
+            _categories = new ObservableCollection<Category>(result);
+        }
+
+
 
         public Category AddCategory(string Newfoodname, FoodCategory Newfoodtype)
         {

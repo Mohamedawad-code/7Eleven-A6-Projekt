@@ -2,15 +2,33 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 
 namespace _7Eleven.ViewModel
 {
-    public class RegisterPaperViewModel
+    public class RegisterPaperViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<RegisterPaper> _registerpaper = new ObservableCollection<RegisterPaper>();
         private RegisterPaperRepository _repo = new RegisterPaperRepository();
+        public ObservableCollection<RegisterPaper> RegisterPapers
+        {
+            get => _registerpaper;
+            set
+            {
+                _registerpaper = value;
+                OnPropertyChanged(nameof(RegisterPapers));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
 
 
         // Input properties for RegisterPaper
@@ -49,8 +67,8 @@ namespace _7Eleven.ViewModel
             DeleteRegisterPaperCommand = new RelayCommand(ExcuteDeleteRegisterPaper);
 
             var result = _repo.GetAll();
-            _registerpaper = new ObservableCollection<RegisterPaper>(result);
-           
+            RegisterPapers = new ObservableCollection<RegisterPaper>(result);
+
 
         }
 
@@ -79,8 +97,8 @@ namespace _7Eleven.ViewModel
         public ObservableCollection<RegisterPaper> GetAllRegisterPapers()
         {
             var result = _repo.GetAll();
-            _registerpaper = new ObservableCollection<RegisterPaper>(result);
-            return _registerpaper;
+            RegisterPapers = new ObservableCollection<RegisterPaper>(result);
+            return RegisterPapers;
         }
 
         public RegisterPaper GetByIdRegisterPaper(Guid id)

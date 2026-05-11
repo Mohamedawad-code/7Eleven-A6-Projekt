@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,10 +10,28 @@ using System.Windows.Input;
 
 namespace _7Eleven.ViewModel
 {
-    public class DepreciationViewModel
+    public class DepreciationViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<Depreciation> _depreciation = new ObservableCollection<Depreciation>();
         private DepreciationRepository _repo = new DepreciationRepository();
+        public ObservableCollection<Depreciation> Depreciations
+        {
+            get => _depreciation;
+            set
+            {
+                _depreciation = value;
+                OnPropertyChanged(nameof(Depreciations));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+
 
         public DateTime NewDate { get; set; }
         public Product SelectedProductDep { get; set; }
@@ -51,7 +70,7 @@ namespace _7Eleven.ViewModel
             EditDepreciationCommand = new RelayCommand(ExcuteEditDepreciation);
 
             var result = _repo.GetAll();
-            _depreciation = new ObservableCollection<Depreciation>(result);
+            Depreciations = new ObservableCollection<Depreciation>(result);
 
 
 
@@ -97,8 +116,8 @@ namespace _7Eleven.ViewModel
         public ObservableCollection<Depreciation> GetAll()
         {
             var  result = _repo.GetAll();
-            _depreciation = new ObservableCollection<Depreciation>(result);
-            return _depreciation;
+            Depreciations = new ObservableCollection<Depreciation>(result);
+            return Depreciations;
         }
 
         public Depreciation GetByIdDepreciation(Guid id)

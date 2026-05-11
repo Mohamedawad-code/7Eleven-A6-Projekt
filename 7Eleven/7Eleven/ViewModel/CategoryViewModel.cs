@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,10 +10,27 @@ using System.Windows.Input;
 
 namespace _7Eleven.ViewModel
 {
-    public class CategoryViewModel
+    public class CategoryViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<Category> _categories = new ObservableCollection<Category>();
         private CategoryRepository _repo = new CategoryRepository();
+        public ObservableCollection<Category> Categories
+        {
+            get => _categories;
+            set
+            {
+                _categories = value;
+                OnPropertyChanged(nameof(Categories));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
 
         public string Newfoodname { get; set; }
         public FoodCategory NewfoodType { get; set; }
@@ -49,7 +67,7 @@ namespace _7Eleven.ViewModel
             EditcategoryCommand = new RelayCommand(ExcuteEditcategory);
 
             var result = _repo.GetAll();
-            _categories = new ObservableCollection<Category>(result);
+            Categories = new ObservableCollection<Category>(result);
         }
 
 
@@ -94,8 +112,8 @@ namespace _7Eleven.ViewModel
         {
 
             var result = _repo.GetAll();
-            _categories = new ObservableCollection<Category>(result);
-            return _categories;
+            Categories = new ObservableCollection<Category>(result);
+            return Categories;
         }
 
         public Category GetByidCategory(Guid id)

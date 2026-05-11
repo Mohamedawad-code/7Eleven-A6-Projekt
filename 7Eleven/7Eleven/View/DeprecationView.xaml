@@ -1,37 +1,229 @@
-﻿<UserControl x:Class="_7Eleven.DeprecationView"
+<UserControl x:Class="_7Eleven.DeprecationView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:_7Eleven"
+             xmlns:vm="clr-namespace:_7Eleven.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="white">
-        <TextBlock HorizontalAlignment="Left" Margin="150,2,0,0" TextWrapping="Wrap" Text="Deprecate a product" FontWeight="Bold" FontFamily="Times New Roman"/>
+             d:DesignHeight="450" d:DesignWidth="670">
 
-        <Rectangle HorizontalAlignment="Center" Height="1" Margin="0,25,0,0" Stroke="Gray" VerticalAlignment="Top" Width="800"/>
+    <UserControl.Resources>
+        <!-- Nav button -->
+        <Style x:Key="NavBtn" TargetType="Button">
+            <Setter Property="FontFamily" Value="Georgia"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="#1A1A1A"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="14,0,0,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#E8F5EE"/>
+                                <Setter Property="Foreground" Value="#006B3C"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-        <Rectangle HorizontalAlignment="Left" Height="450" Margin="145,0.6,0,0" Stroke="gray" VerticalAlignment="Top" Width="1"/>
-        <Button Content="Back" Click="Back_Click" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="180,350,0,0" VerticalAlignment="Top" Width="85"/>
-        <Button Content="Home" Click="Home_Click" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top" Height="61" Width="146"/>
+        <!-- Active nav button -->
+        <Style x:Key="NavBtnActive" TargetType="Button" BasedOn="{StaticResource NavBtn}">
+            <Setter Property="Background" Value="#E8F5EE"/>
+            <Setter Property="Foreground" Value="#006B3C"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
 
+        <!-- Field label -->
+        <Style x:Key="FieldLabel" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Georgia"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="#444444"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
 
-        <Button Content="Register product" Click="RegisterProductView_Click" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="0,148,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
-        <Button Content="Deprecate a product" FontFamily="Times New Roman" HorizontalAlignment="Left" Background="gray" Margin="0,210,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
-        <Rectangle HorizontalAlignment="Center" Height="1" Margin="0,85.5,0,0" Stroke="Gray" VerticalAlignment="Top" Width="800"/>
-        <TextBlock HorizontalAlignment="Left" Margin="153,63,0,0" TextWrapping="Wrap" Text="Fill in the required information for deprecation" VerticalAlignment="Top" FontFamily="Times New Roman" Foreground="gray"/>
+        <!-- Input combo -->
+        <Style x:Key="InputCombo" TargetType="ComboBox">
+            <Setter Property="FontFamily" Value="Georgia"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
 
-        <Rectangle HorizontalAlignment="Left" Height="1" Margin="150,150,0,0" Stroke="Gray" VerticalAlignment="Top" Width="467"/>
-        <Button Content="Clear" Click="Clear_Click" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="300,350,0,0" VerticalAlignment="Top" Width="86" RenderTransformOrigin="0.629,0.476" Background="red" Foreground="white"/>
-        <Button Content="Deprecate" Click="DeprecateProduct_Click" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="418,350,0,0" VerticalAlignment="Top" Width="86" Background="Green" Foreground="white"/>
-        <ComboBox x:Name="PName" IsEditable="True" HorizontalAlignment="Left" Margin="156,122,0,0" VerticalAlignment="Top" Width="215"/>
-        <TextBlock HorizontalAlignment="Left" Margin="157,100,0,0" TextWrapping="Wrap" Text="Product" VerticalAlignment="Top" FontFamily="Times New Roman" Width="100" Height="20" FontSize="14" Foreground="gray"/>
-        <TextBox x:Name="PQuantity" HorizontalAlignment="Left" Margin="395,122,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="74" Height="24"/>
-        <ComboBox x:Name="PReason" Text="Choose a reason" Foreground="Gray" IsEditable="True" HorizontalAlignment="Left" Margin="498,122,0,0" VerticalAlignment="Top" Width="120"/>
+        <!-- Input textbox -->
+        <Style x:Key="InputField" TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Georgia"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
 
-        <TextBlock HorizontalAlignment="Left" Margin="500,100,0,0" TextWrapping="Wrap" Text="Reason" VerticalAlignment="Top" Foreground="gray" FontFamily="Times New Roman" FontSize="14"/>
-        <Button Content="Overview" Click="OverviewView_Click" HorizontalAlignment="Left" Margin="0,87,0,0" VerticalAlignment="Top" Height="62" Width="146"/>
-        <TextBlock HorizontalAlignment="Left" Margin="395,100,0,0" TextWrapping="Wrap" Text="Quantity" VerticalAlignment="Top" FontFamily="Times New Roman" Width="100" Height="20" FontSize="14" Foreground="gray"/>
+        <!-- Green button -->
+        <Style x:Key="GreenBtn" TargetType="Button">
+            <Setter Property="FontFamily" Value="Georgia"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#006B3C"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="b" Background="{TemplateBinding Background}" CornerRadius="3">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="b" Property="Background" Value="#005530"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
+        <!-- Red button -->
+        <Style x:Key="RedBtn" TargetType="Button">
+            <Setter Property="FontFamily" Value="Georgia"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#C8102E"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="b" Background="{TemplateBinding Background}" CornerRadius="3">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="b" Property="Background" Value="#A00D24"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="#F5F5F0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left sidebar navigation -->
+        <Border Grid.Column="0" Background="White"
+                BorderBrush="#E0E0E0" BorderThickness="0,0,1,0">
+            <StackPanel Margin="0,16,0,0">
+                <TextBlock Text="NAVIGATION" FontFamily="Georgia" FontSize="9"
+                           Foreground="#999999" FontWeight="Bold"
+                           Margin="14,0,0,10"/>
+
+                <Button Content="🏠  Hjem" Style="{StaticResource NavBtn}"
+                        Click="Home_Click" Height="44" Width="160"/>
+
+                <Button Content="📊  Oversigt" Style="{StaticResource NavBtn}"
+                        Click="OverviewView_Click" Height="44" Width="160"/>
+
+                <Button Content="➕  Registrer Vare" Style="{StaticResource NavBtn}"
+                        Click="RegisterProductView_Click" Height="44" Width="160"/>
+
+                <Button Content="🗑️  Afskriv Vare" Style="{StaticResource NavBtnActive}"
+                        Height="44" Width="160"/>
+
+                <Button Content="← Tilbage" Style="{StaticResource NavBtn}"
+                        Click="Back_Click" Height="44" Width="160"
+                        Margin="0,20,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Right content -->
+        <Grid Grid.Column="1" Margin="30,20,30,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Page title -->
+            <StackPanel Grid.Row="0" Margin="0,0,0,6">
+                <TextBlock Text="Afskriv Vare" FontFamily="Georgia" FontSize="20"
+                           FontWeight="Bold" Foreground="#1A1A1A"/>
+                <TextBlock Text="Udfyld oplysninger for afskrivning" FontFamily="Georgia" FontSize="12"
+                           Foreground="#888888" Margin="0,2,0,0"/>
+            </StackPanel>
+
+            <!-- Divider -->
+            <Rectangle Grid.Row="1" Height="1" Fill="#E0E0E0" Margin="0,0,0,20"/>
+
+            <!-- Form fields -->
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="16"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="16"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Product selection -->
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Produkt:" Style="{StaticResource FieldLabel}"/>
+                <ComboBox Grid.Row="0" Grid.Column="1" x:Name="PName"
+                          Style="{StaticResource InputCombo}"
+                          ItemsSource="{Binding Products}"
+                          SelectedItem="{Binding SelectedProductDep}"
+                          DisplayMemberPath="Name"
+                          Height="32"/>
+
+                <!-- Quantity -->
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Antal:" Style="{StaticResource FieldLabel}"/>
+                <TextBox Grid.Row="2" Grid.Column="1" x:Name="PQuantity"
+                         Style="{StaticResource InputField}"
+                         Text="{Binding NewAmount, UpdateSourceTrigger=PropertyChanged}"
+                         Height="32"/>
+
+                <!-- Date -->
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Dato:" Style="{StaticResource FieldLabel}"/>
+                <DatePicker Grid.Row="4" Grid.Column="1"
+                            SelectedDate="{Binding NewDate}"
+                            FontFamily="Georgia" Height="32"/>
+            </Grid>
+
+            <!-- Action buttons -->
+            <StackPanel Grid.Row="3" Orientation="Horizontal"
+                        HorizontalAlignment="Right" Margin="0,20,0,0">
+                <Button Content="Ryd" Style="{StaticResource RedBtn}"
+                        Click="Clear_Click"
+                        Width="90" Height="34" Margin="0,0,10,0"/>
+                <Button Content="Afskriv Vare" Style="{StaticResource GreenBtn}"
+                        Command="{Binding CreateDepreciationCommand}"
+                        Width="130" Height="34"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

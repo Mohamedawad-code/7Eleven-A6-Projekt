@@ -1,65 +1,174 @@
-﻿<Window x:Class="_7Eleven.MainWindow"
+<Window x:Class="_7Eleven.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_7Eleven"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="7-Eleven Vare Register" Height="500" Width="850"
+        WindowStartupLocation="CenterScreen"
+        Background="#F5F5F0">
 
+    <Window.Resources>
+        <!-- 7-Eleven colors -->
+        <SolidColorBrush x:Key="SevenGreen" Color="#006B3C"/>
+        <SolidColorBrush x:Key="SevenOrange" Color="#F7941D"/>
+        <SolidColorBrush x:Key="SevenRed" Color="#C8102E"/>
+        <SolidColorBrush x:Key="LightBg" Color="#F5F5F0"/>
+        <SolidColorBrush x:Key="DarkText" Color="#1A1A1A"/>
+        <SolidColorBrush x:Key="SubText" Color="#666666"/>
 
+        <!-- Nav button style -->
+        <Style x:Key="NavButton" TargetType="Button">
+            <Setter Property="FontFamily" Value="Georgia"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="#1A1A1A"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="14,0,0,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" 
+                                BorderThickness="0,0,0,1" BorderBrush="#E0E0E0">
+                            <ContentPresenter VerticalAlignment="Center" 
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#E8F5EE"/>
+                                <Setter Property="Foreground" Value="#006B3C"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-    <DockPanel>
+        <!-- Active nav button -->
+        <Style x:Key="NavButtonActive" TargetType="Button" BasedOn="{StaticResource NavButton}">
+            <Setter Property="Background" Value="#E8F5EE"/>
+            <Setter Property="Foreground" Value="#006B3C"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
 
+        <!-- Main action button -->
+        <Style x:Key="MainActionButton" TargetType="Button">
+            <Setter Property="FontFamily" Value="Georgia"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#006B3C"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" 
+                                CornerRadius="4">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#005530"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <Grid>
-            <Rectangle HorizontalAlignment="Left" Height="1" Margin="0,22,0,0" Stroke="Black" VerticalAlignment="Top" Width="800"/>
-            <Button Content="Overview" Click="OverviewViewPage_Click"  FontSize="25" FontFamily="Times New Roman" HorizontalAlignment="Center" Margin="0,150,0,0" VerticalAlignment="Top" Height="58" Width="266" Background="White" BorderBrush="Black" BorderThickness="2"/>
-            <Label Content="Menu" FontSize="30" FontFamily="Times New Roman" HorizontalAlignment="Center" Margin="0,44,0,0" VerticalAlignment="Top" Height="55" Width="96"/>
-            <Button Content="Register" Click="RegisterProductView_Click" FontSize="25" FontFamily="Times New Roman" HorizontalAlignment="Center" Margin="0,225,0,0" VerticalAlignment="Top" Height="58" Width="266" Background="white" BorderBrush="black" BorderThickness="2"/>
-            <Button Content="Deprecate" Click="DeprecationView_Click"  FontSize="25" FontFamily="Times New Roman" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" Height="58" Width="266" Background=" white" BorderBrush="Black" BorderThickness="2"/>
+        <!-- Header bar -->
+        <Border Grid.Row="0" Background="White" 
+                BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
+            <Grid>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,0">
+                    <TextBlock FontFamily="Georgia" FontSize="20" FontWeight="Bold" VerticalAlignment="Center">
+                        <Run Text="SEV" Foreground="#C8102E"/>
+                        <Run Text="EN" Foreground="#F7941D"/>
+                        <Run Text="-" Foreground="#F7941D"/>
+                        <Run Text="ELEVEN" Foreground="#006B3C"/>
+                    </TextBlock>
+                    <TextBlock Text=" Vare Register" FontFamily="Georgia" FontSize="14" 
+                               Foreground="#666666" VerticalAlignment="Center" Margin="4,2,0,0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
 
-            <TextBlock 
-                HorizontalAlignment="Left" Margin="350,4,0,0" TextWrapping="Wrap" FontWeight="Bold" VerticalAlignment="Top">
-            <Run Text="SEV" Foreground="Red"/><Run Text="EN" Foreground="#FFFD7E14" />
-                <Run Text="-" Foreground="Orange" />
-                <Run Text="ELEVEN" Foreground="#FF006546"  />
+        <!-- Main content area -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-            </TextBlock>
+            <!-- Left sidebar -->
+            <Border Grid.Column="0" Background="White" 
+                    BorderBrush="#E0E0E0" BorderThickness="0,0,1,0">
+                <StackPanel Margin="0,20,0,0">
+                    <TextBlock Text="MENU" FontFamily="Georgia" FontSize="10" 
+                               Foreground="#999999" FontWeight="Bold"
+                               Margin="14,0,0,12"/>
 
-            <Rectangle HorizontalAlignment="Center" Height="248" Margin="0,131,0,0" Stroke="#FF006546" StrokeThickness="10" VerticalAlignment="Top" Width="303"/>
+                    <Button Content="📊  Oversigt" Style="{StaticResource NavButton}"
+                            Click="OverviewViewPage_Click"
+                            Height="48" Width="180"/>
 
+                    <Button Content="➕  Registrer Vare" Style="{StaticResource NavButton}"
+                            Click="RegisterProductView_Click"
+                            Height="48" Width="180"/>
 
+                    <Button Content="🗑️  Afskriv Vare" Style="{StaticResource NavButton}"
+                            Click="DeprecationView_Click"
+                            Height="48" Width="180"/>
 
+                    <!-- Logo at bottom -->
+                    <Image Source="/icons/7-eleven-seeklogo.png" 
+                           Width="80" Margin="50,40,50,0"
+                           VerticalAlignment="Bottom"/>
+                </StackPanel>
+            </Border>
 
-            <Image Source="/icons/icons8-delete-100.png" Margin="253,304,474,83"/>
-            <Image Source="/icons/icons8-add-100.png" Margin="263,231,478,156"/>
-            <Image Source="/icons/icons8-overview-100.png" Margin="254,156,473,232"/>
+            <!-- Right content area -->
+            <Border Grid.Column="1" Background="#F5F5F0">
+                <ContentControl x:Name="MainContent">
+                    <!-- Default home screen -->
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock FontFamily="Georgia" FontSize="32" FontWeight="Bold"
+                                   HorizontalAlignment="Center" Margin="0,0,0,8">
+                            <Run Text="SEV" Foreground="#C8102E"/>
+                            <Run Text="EN" Foreground="#F7941D"/>
+                            <Run Text="-" Foreground="#F7941D"/>
+                            <Run Text="ELEVEN" Foreground="#006B3C"/>
+                        </TextBlock>
+                        <TextBlock Text="Vare Register System" FontFamily="Georgia" FontSize="16"
+                                   Foreground="#666666" HorizontalAlignment="Center" Margin="0,0,0,40"/>
 
-            <Image Source="/icons/7-eleven-seeklogo.png" Margin="250,368,249,-5"/>
-            <Image Source="/icons/caffe.png" Margin="-37,328,693,11"/>
+                        <Button Content="📊  Vis Oversigt" Style="{StaticResource MainActionButton}"
+                                Click="OverviewViewPage_Click"
+                                Height="50" Width="220" Margin="0,0,0,12"/>
 
+                        <Button Content="➕  Registrer Ny Vare" Style="{StaticResource MainActionButton}"
+                                Click="RegisterProductView_Click"
+                                Height="50" Width="220" Margin="0,0,0,12"/>
 
-            <Image Source="/icons/icons8-horizontal-line-96.png" Margin="355,68,368,335" Stretch="Fill"/>
-            <Image Source="/icons/icons8-horizontal-line-96.png" Margin="355,36,368,367" Stretch="Fill"/>
-
-            <Ellipse HorizontalAlignment="Left" Height="100" Margin="757,33,0,0" Stroke="orange" Fill="#FFFD9136" VerticalAlignment="Top" Width="100"/>
-
-            <Ellipse HorizontalAlignment="Left" Height="100" Margin="642,194,0,0" Stroke="green" Fill="#FF006546" VerticalAlignment="Top" Width="100"/>
-            <Ellipse HorizontalAlignment="Left" Height="100" Margin="106,386,0,0" Stroke="green" Fill="#FF006546" VerticalAlignment="Top" Width="100"/>
-            <Ellipse HorizontalAlignment="Left" Height="108" Margin="720,360,0,0" Stroke="orange" Fill="#FFFD9136" VerticalAlignment="Top" Width="117"/>
-            <Ellipse HorizontalAlignment="Left" Height="100" Margin="36,104,0,0" Stroke="orange" Fill="#FFFD9136" VerticalAlignment="Top" Width="100"/>
-
-            <ContentControl x:Name="MainContent" Margin="0,23,0,2">
-
-
-
-            </ContentControl>
-
-
-
-
+                        <Button Content="🗑️  Afskriv Vare" Height="50" Width="220"
+                                Click="DeprecationView_Click"
+                                FontFamily="Georgia" FontSize="16"
+                                Foreground="White" Background="#C8102E" BorderThickness="0"
+                                Cursor="Hand"/>
+                    </StackPanel>
+                </ContentControl>
+            </Border>
         </Grid>
-    </DockPanel>
+    </Grid>
 </Window>

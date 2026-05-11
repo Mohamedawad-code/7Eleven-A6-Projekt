@@ -2,18 +2,34 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using System.Windows.Input;
+using System.Xml.Linq;
 
 namespace _7Eleven.ViewModel
 {
-    public class CoworkerViewModel
+    public class CoworkerViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<Coworker> _coworkers = new ObservableCollection<Coworker>();
         private CoworkerRepository _repo = new CoworkerRepository();
+        public ObservableCollection<Coworker> Coworkers
+        {
+            get => _coworkers;
+            set
+            {
+                _coworkers = value;
+                OnPropertyChanged(nameof(Coworkers));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public string NewName { get; set; }
         public int NewId { get; set; }
@@ -52,7 +68,7 @@ namespace _7Eleven.ViewModel
             EditCoworkerCommand = new RelayCommand(ExcuteEditCoworker);
 
             var result = _repo.GetAll();
-            _coworkers = new ObservableCollection<Coworker>(result);
+            Coworkers = new ObservableCollection<Coworker>(result);
         }
 
 
@@ -96,8 +112,9 @@ namespace _7Eleven.ViewModel
         public ObservableCollection<Coworker> GetAllCoworkers()
         {
             var result = _repo.GetAll();
-            _coworkers = new ObservableCollection<Coworker>(result);
-            return _coworkers;
+            Coworkers = new ObservableCollection<Coworker>(result);
+            return Coworkers;
+
         }
 
         public Coworker GetByIdCoworker(int id)

@@ -1,0 +1,47 @@
+@@startuml
+ Title SD
+ skinparam TitleFontSize 25
+skinparam sequenceMessageAlign Center
+actor Employee
+activate Employee
+activate UI
+
+activate Register
+participant UI
+participant Register
+database Repository
+
+autonumber 1
+
+
+loop Registering new item
+Employee->UI: Register new item
+Employee->UI: enter product: (Name, Amount, TimeReceived, ExpiringDate)
+Employee->UI: select a Category: (Bread, Dessert, Sandwiches, Pantry, Friedfood)
+opt return to main menu
+Employee->UI: Click cancel
+end
+Employee->Register: Click register
+
+end
+Register->Repository: Insert item into repository
+group generating ProductID and time received
+Repository->Register: ProductID & time is generated
+Register->Register: validates info
+end
+Register->Employee: Item is registered
+
+    
+
+deactivate Employee
+deactivate UI
+deactivate Register
+
+
+
+
+
+
+
+
+@@enduml

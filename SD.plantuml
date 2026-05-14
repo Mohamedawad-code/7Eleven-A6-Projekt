@@ -1,47 +1,72 @@
-@@startuml
- Title SD
- skinparam TitleFontSize 25
+@startuml
+title SD - Registrer Vare
+skinparam TitleFontSize 25
 skinparam sequenceMessageAlign Center
-actor Employee
-activate Employee
-activate UI
 
-activate Register
-participant UI
-participant Register
-database Repository
+
+actor medarbejder
+participant ":RegisterProduct" as rp
+participant ":ProductViewModel" as pvm
+participant ":Product" as p
+participant ":ProductRepository" as repo
+
 
 autonumber 1
 
 
-loop Registering new item
-Employee->UI: Register new item
-Employee->UI: enter product: (Name, Amount, TimeReceived, ExpiringDate)
-Employee->UI: select a Category: (Bread, Dessert, Sandwiches, Pantry, Friedfood)
-opt return to main menu
-Employee->UI: Click cancel
+activate medarbejder
+
+
+medarbejder -> rp : Åbner vareregistreringssystemet
+activate rp
+
+
+rp --> medarbejder : Viser registreringsformular
+
+
+medarbejder -> rp : Indtaster Name, TimeReceived, ExpiringDate
+medarbejder -> rp : Vælger FoodCategory
+medarbejder -> rp : Indtaster Amount
+
+
+opt Fortryd
+    medarbejder -> rp : Klikker Tilbage
+    rp --> medarbejder : Vender tilbage til hovedmenu
 end
-Employee->Register: Click register
-
-end
-Register->Repository: Insert item into repository
-group generating ProductID and time received
-Repository->Register: ProductID & time is generated
-Register->Register: validates info
-end
-Register->Employee: Item is registered
-
-    
-
-deactivate Employee
-deactivate UI
-deactivate Register
 
 
+medarbejder -> rp : Klikker Registrér Vare
+rp -> pvm : ExcuteCreateNewProduct()
+activate pvm
 
 
+pvm -> pvm : Validerer oplysninger
 
 
+create p
+pvm -> p : new Product(Name, Amount, TimeReceived, ExpiringDate)
+activate p
+note right of p : ProductNO genereres\nvia Guid.NewGuid()
+p --> pvm : :Product
+deactivate p
 
 
-@@enduml
+pvm -> repo : AddProduct(product)
+activate repo
+repo -> repo : Udfører AddProduct stored procedure
+repo --> pvm : Vare gemt
+deactivate repo
+
+
+pvm --> rp : Vare oprettet
+deactivate pvm
+
+
+rp --> medarbejder : "Vare registreret"
+deactivate rp
+
+
+deactivate medarbejder
+
+
+@enduml

@@ -30,6 +30,8 @@ namespace _7Eleven.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public IEnumerable<FoodCategory> FoodCategories { get; } =
+        Enum.GetValues(typeof(FoodCategory)).Cast<FoodCategory>();
 
 
         public string NewName { get; set; }

@@ -1,74 +1,57 @@
 @startuml
 
-class Employee <<table>>{
-    ** <<PK>> <<surrogate>> EmployeeID : Int**
-    Name : NVarChar_666
-    
-    <<PK>> PK_Employee()
+class Coworker <<table>> {
+    **<<PK>> Id : Int**
+    Name : NVarChar(100)
 
+    <<PK>> PK_Coworker()
 }
 
-class FrontingDocument <<table>>{
-    ** <<PK>> <<surrogate>> FrontingDocumentID : Int**
-    Date : DateTime
-    //<<FK>> EmployeeID : Int//
-
-    <<PK>> PK_FrontingDocument()
-    <<FK>> FK_FrontingDocument_Employee(EmployeeID)
-}
 class Product <<table>> {
-    ** <<PK>> <<surrogate>> ProductID : Int**
-    Name : NVarChar_666
-    Quantity : Int
-    ExpirationDate : DateTime
-    ReceivedDate : DateTime
+    **<<PK>> <<surrogate>> ProductNO : UniqueIdentifier**
+    Name : NVarChar(100)
+    Amount : Int
+    TimeReceived : DateTime
+    ExpiringDate : DateTime
 
     <<PK>> PK_Product()
-
 }
-class WriteOffDocument <<table>> {
-    ** <<PK>> <<surrogate>> WriteOffDocumentID : Int**
+
+class Category <<table>> {
+    **<<PK>> <<surrogate>> ID : UniqueIdentifier**
+    FoodName : NVarChar(100)
+    FoodType : NVarChar(50)
+
+    <<PK>> PK_Category()
+}
+
+class Depreciation <<table>> {
+    **<<PK>> <<surrogate>> ID : UniqueIdentifier**
     Date : DateTime
-    //<<FK>> EmployeeID : Int//
-    
-    <<PK>> PK_WriteOffDocument()
-    <<FK>> FK_WriteOffDocument_Employee(EmployeeID)
+    //<<FK>> ProductNO : UniqueIdentifier//
 
+    <<PK>> PK_Depreciation()
+    <<FK>> FK_Depreciation_Product(ProductNO)
 }
 
-class WriteOffLine <<table>> {
-    ** <<PK>> <<surrogate>> WriteOffLineID : Int**
-    Quantity : int
-    Reason : NVarChar_15
-    //<<FK>> WriteOffDocumentID : Int//
-    //<<FK>> ProductID : Int//
+class RegisterPaper <<table>> {
+    **<<PK>> <<surrogate>> ID : UniqueIdentifier**
+    Amount : Int
+    ExpiringDate : DateTime
+    RegisterDate : DateTime
+    //<<FK>> ProductNO : UniqueIdentifier//
+    //<<FK>> CategoryID : UniqueIdentifier//
+    //<<FK>> CoworkerID : Int//
 
-    <<PK>> PK_WriteOffLine()
-    <<FK>> FK_WriteOffLine_WriteOffDocument(WriteOffDocumentID)
-    <<FK>> FK_WriteOffLine_Product(ProductID)
+    <<PK>> PK_RegisterPaper()
+    <<FK>> FK_RegisterPaper_Product(ProductNO)
+    <<FK>> FK_RegisterPaper_Category(CategoryID)
+    <<FK>> FK_RegisterPaper_Coworker(CoworkerID)
 }
 
-class FrontingLine <<table>> {
-    ** <<PK>> <<surrogate>> FrontingLineID : Int**
-    Quantity : int
-    Date : DateTime
-    //<<FK>> FrontingDocumentID : Int//
-    //<<FK>> ProductID : Int//
-
-    <<PK>> PK_FrontingLine()
-    <<FK>> FK_FrontingLine_FrontingDocument(FrontingDocumentID)
-    <<FK>> FK_FrontingLine_Product(ProductID)
-}
-
-Employee "1" -- "0..*" FrontingDocument
-Employee "1" -- "0..*" WriteOffDocument
-FrontingDocument "1" -- "0..*" FrontingLine
-WriteOffDocument "1" -- "0..*" WriteOffLine
-Product "1" -- "0..*" FrontingLine
-Product "1" -- "0..*" WriteOffLine
-
-
-
-
+Coworker "1" -- "0..*" RegisterPaper
+Product "1" -- "0..*" RegisterPaper
+Category "1" -- "0..*" RegisterPaper
+Product "1" -- "0..*" Depreciation
 
 @enduml

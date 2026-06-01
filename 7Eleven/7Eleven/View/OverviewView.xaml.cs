@@ -6,12 +6,12 @@ namespace _7Eleven
 {
     public partial class OverviewView : UserControl
     {
-        private RegisterPaperViewModel _viewModel;
+        private ProductViewModel _viewModel;
 
         public OverviewView()
         {
             InitializeComponent();
-            _viewModel = new RegisterPaperViewModel();
+            _viewModel = new ProductViewModel();
             DataContext = _viewModel;
         }
 

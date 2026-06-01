@@ -127,25 +127,21 @@
             <!-- Divider -->
             <Rectangle Grid.Row="1" Height="1" Fill="#E0E0E0" Margin="0,0,0,12"/>
 
-            <!-- DataGrid bound to RegisterPaperViewModel -->
+            <!-- DataGrid bound to ProductViewModel -->
             <DataGrid Grid.Row="2"
                       x:Name="ProductDataGrid"
                       AutoGenerateColumns="False"
-                      ItemsSource="{Binding RegisterPapers}"
-                      SelectedItem="{Binding SelectedRegisterPaper}"
+                      ItemsSource="{Binding Products}"
+                      SelectedItem="{Binding SelectedProduct}"
                       SelectionChanged="DataGrid_SelectionChanged">
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Varenavn" 
-                                        Binding="{Binding Product.Name}" Width="*"/>
-                    <DataGridTextColumn Header="Kategori" 
-                                        Binding="{Binding Category.FoodName}" Width="*"/>
+                                        Binding="{Binding Name}" Width="*"/>
                     <DataGridTextColumn Header="Antal" 
                                         Binding="{Binding Amount}" Width="80"/>
-                    <DataGridTextColumn Header="Registreret af" 
-                                        Binding="{Binding RegisteredBy.Name}" Width="*"/>
-                    <DataGridTextColumn Header="Registreringsdato" 
-                                        Binding="{Binding RegisterDate, StringFormat=dd/MM/yyyy}" Width="*"/>
+                    <DataGridTextColumn Header="Modtagelsesdato" 
+                                        Binding="{Binding TimeReceived, StringFormat=dd/MM/yyyy}" Width="*"/>
                     <DataGridTextColumn Header="Udløbsdato" 
                                         Binding="{Binding ExpiringDate, StringFormat=dd/MM/yyyy}" Width="*"/>
                 </DataGrid.Columns>
@@ -153,3 +149,4 @@
         </Grid>
     </Grid>
 </UserControl>
+

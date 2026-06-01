@@ -1,3 +1,4 @@
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using _7Eleven.ViewModel;
@@ -12,7 +13,16 @@ namespace _7Eleven
         {
             InitializeComponent();
             _viewModel = new ProductViewModel();
+            
+            // Set dates BEFORE setting DataContext
+            _viewModel.NewTimeReceived = DateTime.Now;
+            _viewModel.NewExpiringDate = DateTime.Now;
+            
             DataContext = _viewModel;
+
+            PExpirationDate.DisplayDateStart = DateTime.Now.AddYears(-5);
+            PExpirationDate.DisplayDateEnd = DateTime.Now.AddYears(5);
+            PExpirationDate.SelectedDate = DateTime.Now;
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
